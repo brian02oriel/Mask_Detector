@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from LocalBinaryPattern import LocalBinaryPatterns
-
+from joblib import dump
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix, precision_score, recall_score, accuracy_score, f1_score, roc_curve
@@ -98,5 +98,7 @@ clfp = clf.predict(X_test)
 print(clfp)
 measuringPerformance("KNN", clf, X_train, y_train, y_test, clfp)
 
+dump(clf, 'classifier.joblib')
+print("Model successfully saved")
 
 
