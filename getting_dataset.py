@@ -4,7 +4,9 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 
 trigger = False
-counter = 0
+limit = 200
+init = 0
+counter = init
 width = int(cap.get(3))
 heigh = int(cap.get(4))
 class_name = ''
@@ -14,9 +16,9 @@ while(True):
     img = cv2.flip(img, 1)
     cv2.rectangle(img, (round(width/4), round(heigh/8)), (width - round(width/4), heigh - round(heigh/8)), (0, 0, 255), 2)
     
-    if(counter == 200):
+    if(counter == limit):
         trigger = not trigger
-        counter = 0
+        counter = init
     
     if(trigger):
         roi = img[round(heigh/8): heigh - round(heigh/8), round(width/4): width - round(width/4)]
